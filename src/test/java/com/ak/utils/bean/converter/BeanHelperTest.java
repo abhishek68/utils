@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class BeanHelperTest {
 
 	private Map<String, String> personToEmployeeMap = new HashMap<String, String>() {
+		private static final long serialVersionUID = 1L;
+
 		{
 			put("name", "employeeName");
 			put("address", "employeeAddress");
@@ -16,6 +19,8 @@ public class BeanHelperTest {
 	};
 
 	private Map<String, String> personAddressToEmployeeAddressMap = new HashMap<String, String>() {
+		private static final long serialVersionUID = 1L;
+
 		{
 			put("city", "employeeCity");
 			put("country", "employeeCountry");
@@ -37,6 +42,10 @@ public class BeanHelperTest {
 
 		Employee employee = BeanHelper.convert(person, Employee.class);
 
+		Assert.assertEquals(person.getName(), employee.getEmployeeName());
+		Assert.assertEquals(person.getAddress().getCity(), employee.getEmployeeAddress().getEmployeeCity());
+		Assert.assertEquals(person.getAddress().getCountry(), employee.getEmployeeAddress().getEmployeeCountry());
+
 		System.out.println(BeanUtils.describe(employee));
 		System.out.println(BeanUtils.describe(employee.getEmployeeAddress()));
 	}
@@ -56,9 +65,12 @@ public class BeanHelperTest {
 
 		Person person = BeanHelper.convert(employee, Person.class);
 
+		Assert.assertEquals(employee.getEmployeeName(), person.getName());
+		Assert.assertEquals(employee.getEmployeeAddress().getEmployeeCity(), person.getAddress().getCity());
+		Assert.assertEquals(employee.getEmployeeAddress().getEmployeeCountry(), person.getAddress().getCountry());
+
 		System.out.println(BeanUtils.describe(person));
 		System.out.println(BeanUtils.describe(person.getAddress()));
 	}
 
-	
 }
