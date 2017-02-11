@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 
-public class BeanTransformerTest {
+public class BeanHelperTest {
 
 	private Map<String, String> personToEmployeeMap = new HashMap<String, String>() {
 		{
@@ -32,10 +32,10 @@ public class BeanTransformerTest {
 		address.setCountry("India");
 		person.setAddress(address);
 
-		BeanTransformer.addClassPropertyMap(Person.class, Employee.class, personToEmployeeMap);
-		BeanTransformer.addClassPropertyMap(Address.class, EmployeeAddress.class, personAddressToEmployeeAddressMap);
+		BeanHelper.addClassPropertyMap(Person.class, Employee.class, personToEmployeeMap);
+		BeanHelper.addClassPropertyMap(Address.class, EmployeeAddress.class, personAddressToEmployeeAddressMap);
 
-		Employee employee = BeanTransformer.convert(person, Employee.class);
+		Employee employee = BeanHelper.convert(person, Employee.class);
 
 		System.out.println(BeanUtils.describe(employee));
 		System.out.println(BeanUtils.describe(employee.getEmployeeAddress()));
@@ -51,10 +51,10 @@ public class BeanTransformerTest {
 		employeeAddress.setEmployeeCountry("India");
 		employee.setEmployeeAddress(employeeAddress);
 
-		BeanTransformer.addClassPropertyMap(Person.class, Employee.class, personToEmployeeMap);
-		BeanTransformer.addClassPropertyMap(Address.class, EmployeeAddress.class, personAddressToEmployeeAddressMap);
+		BeanHelper.addClassPropertyMap(Person.class, Employee.class, personToEmployeeMap);
+		BeanHelper.addClassPropertyMap(Address.class, EmployeeAddress.class, personAddressToEmployeeAddressMap);
 
-		Person person = BeanTransformer.convert(employee, Person.class);
+		Person person = BeanHelper.convert(employee, Person.class);
 
 		System.out.println(BeanUtils.describe(person));
 		System.out.println(BeanUtils.describe(person.getAddress()));

@@ -10,7 +10,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.Converter;
 import org.apache.commons.beanutils.PropertyUtils;
 
-public class BeanTransformer {
+public class BeanHelper {
 
 	private static Map<String, Map<String, String>> classPropertyMap = new HashMap<>();
 
@@ -69,7 +69,7 @@ public class BeanTransformer {
 				T newInstance;
 				try {
 					newInstance = type.newInstance();
-					BeanTransformer.convert(value, newInstance);
+					BeanHelper.convert(value, newInstance);
 					return newInstance;
 				} catch (Exception e) {
 					throw new RuntimeException(e);
@@ -85,7 +85,7 @@ public class BeanTransformer {
 				T newInstance;
 				try {
 					newInstance = type.newInstance();
-					BeanTransformer.convert(value, newInstance);
+					BeanHelper.convert(value, newInstance);
 					return newInstance;
 				} catch (Exception e) {
 					throw new RuntimeException(e);
